@@ -65,4 +65,14 @@ mod tests {
         let matcher = Matcher::new("a+.b+".to_string(), false);
         assert_eq!(true, matcher.execute("aaa bbb"));
     }
+
+    #[test]
+    fn test_fixed_strings_matcher() {
+        let matcher = Matcher::new("fg".to_string(), true);
+        assert_eq!(true, matcher.execute("abcdefg"));
+        let matcher = Matcher::new("Z".to_string(), true);
+        assert_eq!(false, matcher.execute("abcdefg"));
+        let matcher = Matcher::new("a+.b+".to_string(), true);
+        assert_eq!(false, matcher.execute("aaa bbb"));
+    }
 }
